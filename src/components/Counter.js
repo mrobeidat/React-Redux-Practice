@@ -15,19 +15,22 @@ function Counter() {
 
   const loginHandler = (status) => {
     if (status) {
-      dispatch(logout());
+      dispatch(logout(50));
     } else {
       dispatch(login());
     }
   };
 
-  const counterHandler = useCallback((type, value) => {
-    if (type === "increase") {
-      dispatch(increase(value));
-    } else {
-      dispatch(decrease(value));
-    }
-  }, [dispatch]);
+  const counterHandler = useCallback(
+    (type, value) => {
+      if (type === "increase") {
+        dispatch(increase(value));
+      } else {
+        dispatch(decrease(value));
+      }
+    },
+    [increase, decrease, dispatch]
+  );
 
   useEffect(() => {
     counterHandler("increase", 90);
