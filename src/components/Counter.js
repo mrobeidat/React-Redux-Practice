@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import { counterAction } from "../store/counterSlice";
@@ -20,6 +20,19 @@ function Counter() {
       dispatch(login());
     }
   };
+
+  const counterHandler = useCallback((type, value) => {
+    if (type === "increase") {
+      dispatch(increase(value));
+    } else {
+      dispatch(decrease(value));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    counterHandler("increase", 90);
+  }, [counterHandler]);
+
   return (
     <div className="App">
       <h1>Redux Counter</h1>
@@ -31,7 +44,7 @@ function Counter() {
               variant="contained"
               size="large"
               className="btn"
-              onClick={() => dispatch(increase(5))}
+              onClick={() => counterHandler("increase", 5)}
             >
               increase +
             </Button>
@@ -39,7 +52,7 @@ function Counter() {
               variant="contained"
               size="large"
               className="btn"
-              onClick={() => dispatch(decrease(2))}
+              onClick={() => counterHandler("decrease", 6)}
             >
               decrease -
             </Button>
