@@ -8,7 +8,6 @@ function Counter() {
   const globalstate = useSelector((state) => state);
   const dispatch = useDispatch();
   const { increase, decrease } = counterAction;
-
   const isLoggedIn = () => {
     return globalstate.auth.isLoggedIn;
   };

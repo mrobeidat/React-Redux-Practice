@@ -16,9 +16,9 @@ const counterSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(logout, (state,action)=>{
-      state.value = action.payload
-    })
+    builder.addCase(logout, (state, action) => {
+      state.value = action.payload;
+    });
   },
 });
 export default counterSlice.reducer;
